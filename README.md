@@ -1,3 +1,4 @@
+# 自用clash策略，不懂勿用
 
 <table>
 <thead>
