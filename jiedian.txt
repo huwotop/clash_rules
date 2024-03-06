@@ -1,5 +1,0 @@
-vless://22a16011-ebdd-4af3-a317-3266fb70b091@27.50.49.96:443?encryption=none&security=tls&sni=cfpgvless.huwo.top&type=ws&host=cfpgvless.huwo.top&path=%2f%3fed%3d2048#Hong+Kong+(HK)
-vless://22a16011-ebdd-4af3-a317-3266fb70b091@27.50.49.38:443?encryption=none&security=tls&sni=cfpgvless.huwo.top&type=ws&host=cfpgvless.huwo.top&path=%2f%3fed%3d2048#Hong+Kong+(HK)
-vless://22a16011-ebdd-4af3-a317-3266fb70b091@103.184.45.181:443?encryption=none&security=tls&sni=cfpgvless.huwo.top&type=ws&host=cfpgvless.huwo.top&path=%2f%3fed%3d2048#China+(CN)
-vless://22a16011-ebdd-4af3-a317-3266fb70b091@27.50.49.157:443?encryption=none&security=tls&sni=cfpgvless.huwo.top&type=ws&host=cfpgvless.huwo.top&path=%2f%3fed%3d2048#Hong+Kong+(HK)
-vless://22a16011-ebdd-4af3-a317-3266fb70b091@27.50.48.8:443?encryption=none&security=tls&sni=cfpgvless.huwo.top&type=ws&host=cfpgvless.huwo.top&path=%2f%3fed%3d2048#Hong+Kong+(HK)
