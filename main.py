@@ -1,42 +1,25 @@
-# 获取默认的规则
-
+import base64
 import requests
+from lxml import etree
 
-# 直链网址
-url01 = "https://github.com/LM-Firefly/Rules/blob/master/CCC-Global.list"  #全球常见 云计算公司
-url02 = "https://github.com/LM-Firefly/Rules/blob/master/CCC-CN.list" #中国常见 云计算公司
-url03 = "https://github.com/LM-Firefly/Rules/blob/master/Special/Local-LAN.list" #局域网 IP 段
-url04 = "https://github.com/LM-Firefly/Rules/blob/master/Special/LAN-Special-Apps.list" #局域网特殊应用域名（投屏、广播 等）
-url05 = "https://github.com/LM-Firefly/Rules/blob/master/Special/DMCA-Sensitive.list" #DMCA 敏感域名（主要针对机场审计 tracker、迅雷）
-url06 = "https://github.com/LM-Firefly/Rules/blob/master/Special/Video-Crack.list" #盗版视频解析站
-url07 = "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Microsoft.list" #微软服务
-url08 = "https://github.com/LM-Firefly/Rules/blob/master/Special/DNS.list" #常用 DNS
-url09 = "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/LocalAreaNetwork.list"
-url010 = "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/UnBan.list"
-url011 = "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Apple.list"
-url012 = "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list"
-url013 = "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaMedia.list"
-url014 = "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list"
-url015 = "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaIp.list"
+def ipQuery(ip):    
+    url = "https://browserleaks.com/ip/" + ip
+    req = requests.get(url).text
+    html = etree.HTML(req)
+    addr = html.xpath('//img[@class="flag-icon"]/@title')  #地址
+    # print(addr)
+    return addr[0].strip()
 
+with open('cf_ip.txt', 'r') as f:
+    lines = f.readlines()
 
-# 拦截网址
-url11 = "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanAD.list"
-url12 = "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list"
+with open('jiedian.txt', 'w', encoding='utf-8') as f:
+    f.write("vmess://ewogICJ2IjogIjIiLAogICJwcyI6ICJKUOiHquW7uuiKgueCuSIsCiAgImFkZCI6ICJkZW1vLmh1d28udG9wIiwKICAicG9ydCI6ICI0NDMiLAogICJpZCI6ICI3MUQwRjI1RS0xMEQ5LTZERDAtM0UwRi04ODUxODFGMjRBREQiLAogICJhaWQiOiAiMCIsCiAgInNjeSI6ICJhdXRvIiwKICAibmV0IjogIndzIiwKICAidHlwZSI6ICJub25lIiwKICAiaG9zdCI6ICIiLAogICJwYXRoIjogIi9odXdvMjA1MHRvcCIsCiAgInRscyI6ICJ0bHMiLAogICJzbmkiOiAiIiwKICAiYWxwbiI6ICIiLAogICJmcCI6ICIiCn0\n")
+    for line in lines:
+        str = line.strip()
+        f.write("vless://22a16011-ebdd-4af3-a317-3266fb70b091@"+str+":443?encryption=none&security=tls&sni=cfpgvless.huwo.top&fp=randomized&type=ws&host=cfpgvless.huwo.top&path=%2F%3Fed%3D2048#"+ipQuery(str)+"\n")
 
-directUrls = [url01,url02,url03,url04,url05,url06,url07,url08,url09,url010,url011,url012,url013,url014,url015]
-rejectUrls = [url11,url12]
-
-# 写入文件
-with open("direct.txt","w",encoding="utf-8") as f:
-    with open("exSite.txt","r",encoding="utf-8") as f1:
-        f.write(f1.read())
-        f.write("\n")
-        for url in directUrls:
-            html = requests.get(url).text
-            f.write(html+"\n")
-
-with open("reject.txt","w",encoding="utf-8") as f:
-    for url in rejectUrls:
-        html = requests.get(url).text
-        f.write(html+"\n")
+with open('jiedian.txt', 'r', encoding='utf-8') as f:
+    with open('jiedian.md', 'w') as f2:
+        str = f.read()
+        f2.write(base64.b64encode(str.encode('utf-8')).decode('utf-8'))
